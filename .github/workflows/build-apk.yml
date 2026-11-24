@@ -1,0 +1,17 @@
+name: build-apk
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+      - run: dotnet workload install android
+      - run: dotnet build -c Debug osu.Android.slnf -p:EmbedAssembliesIntoApk=true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: osu-apk
+          path: "**/bin/Debug/**/*.apk"
