@@ -9,6 +9,7 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Input.Events;
 using osu.Game.Configuration;
+using osu.Game.Rulesets.Mania.Configuration;
 using osuTK;
 
 namespace osu.Game.Rulesets.Mania.UI
