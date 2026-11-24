@@ -55,7 +55,37 @@ namespace osu.Game.Rulesets.Mania
                 Caption = RulesetSettingsStrings.TouchOverlay,
                 Current = config.GetBindable<bool>(ManiaRulesetSetting.TouchOverlay)
             }));
+            Add(new SettingsItemV2(new FormSliderBar<double>
+            {
+                Caption = "Touch area width",
+                Current = config.GetBindable<double>(ManiaRulesetSetting.TouchOverlayWidth),
+                KeyboardStep = 0.05,
+                LabelFormat = v => $"{v * 100:0}%",
+            }));
 
+            Add(new SettingsItemV2(new FormSliderBar<double>
+            {
+                Caption = "Touch area height",
+                Current = config.GetBindable<double>(ManiaRulesetSetting.TouchOverlayHeight),
+                KeyboardStep = 0.05,
+                LabelFormat = v => $"{v * 100:0}%",
+            }));
+
+            Add(new SettingsItemV2(new FormSliderBar<double>
+            {
+                Caption = "Touch area horizontal position (0% left, 100% right)",
+                Current = config.GetBindable<double>(ManiaRulesetSetting.TouchOverlayPositionX),
+                KeyboardStep = 0.05,
+                LabelFormat = v => $"{v * 100:0}%",
+            }));
+
+            Add(new SettingsItemV2(new FormSliderBar<double>
+            {
+                Caption = "Touch area vertical position (0% top, 100% bottom)",
+                Current = config.GetBindable<double>(ManiaRulesetSetting.TouchOverlayPositionY),
+                KeyboardStep = 0.05,
+                LabelFormat = v => $"{v * 100:0}%",
+            }));
             if (RuntimeInfo.IsMobile)
             {
                 Add(new SettingsItemV2(new FormEnumDropdown<ManiaMobileLayout>
