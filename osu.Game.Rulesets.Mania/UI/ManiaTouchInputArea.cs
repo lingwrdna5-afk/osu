@@ -50,7 +50,7 @@ namespace osu.Game.Rulesets.Mania.UI
             Origin = Anchor.BottomCentre;
 
             RelativeSizeAxes = Axes.Both;
-            Height = 0.5f;
+            Height = 0.3f;
         }
 
         [BackgroundDependencyLoader]
