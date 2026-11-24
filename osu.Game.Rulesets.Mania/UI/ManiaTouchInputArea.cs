@@ -42,21 +42,44 @@ namespace osu.Game.Rulesets.Mania.UI
         };
 
         private GridContainer gridContainer = null!;
+        private readonly BindableDouble touchWidth = new BindableDouble(1);
+        private readonly BindableDouble touchHeight = new BindableDouble(0.5);
+        private readonly BindableDouble touchPositionX = new BindableDouble(0.5);
+        private readonly BindableDouble touchPositionY = new BindableDouble(1);
 
         public ManiaTouchInputArea(DrawableManiaRuleset drawableRuleset)
         {
             this.drawableRuleset = drawableRuleset;
 
-            Anchor = Anchor.BottomCentre;
-            Origin = Anchor.BottomCentre;
+            Anchor = Anchor.TopLeft;
+            Origin = Anchor.TopLeft;
 
             RelativeSizeAxes = Axes.Both;
-            Height = 0.3f;
+            RelativePositionAxes = Axes.Both;
         }
-
-        [BackgroundDependencyLoader]
-        private void load()
+        private void updateLayout()
         {
+            float width = (float)touchWidth.Value;
+            float height = (float)touchHeight.Value;
+
+            Width = width;
+            Height = height;
+            X = (float)touchPositionX.Value * (1 - width);
+            Y = (float)touchPositionY.Value * (1 - height);
+        }
+        [BackgroundDependencyLoader]
+        private void load(ManiaRulesetConfigManager? rulesetConfig)
+        {
+            rulesetConfig?.BindWith(ManiaRulesetSetting.TouchOverlayWidth, touchWidth);
+            rulesetConfig?.BindWith(ManiaRulesetSetting.TouchOverlayHeight, touchHeight);
+            rulesetConfig?.BindWith(ManiaRulesetSetting.TouchOverlayPositionX, touchPositionX);
+            rulesetConfig?.BindWith(ManiaRulesetSetting.TouchOverlayPositionY, touchPositionY);
+
+            touchWidth.BindValueChanged(_ => updateLayout());
+            touchHeight.BindValueChanged(_ => updateLayout());
+            touchPositionX.BindValueChanged(_ => updateLayout());
+            touchPositionY.BindValueChanged(_ => updateLayout());
+            updateLayout();
             List<Drawable> receptorGridContent = new List<Drawable>();
             List<Dimension> receptorGridDimensions = new List<Dimension>();
 
