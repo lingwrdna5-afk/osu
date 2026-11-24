@@ -10,8 +10,8 @@ jobs:
         with:
           dotnet-version: "8.0.x"
       - run: dotnet workload install android
-      - run: dotnet build -c Debug osu.Android.slnf -p:EmbedAssembliesIntoApk=true
+      - run: dotnet build -c Release osu.Android.slnf -p:EmbedAssembliesIntoApk=true
       - uses: actions/upload-artifact@v4
         with:
           name: osu-apk
-          path: "**/bin/Debug/**/*.apk"
+          path: "**/bin/Release/**/*.apk"
