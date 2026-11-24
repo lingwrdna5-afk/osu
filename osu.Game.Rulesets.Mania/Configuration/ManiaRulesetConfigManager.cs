@@ -25,7 +25,7 @@ namespace osu.Game.Rulesets.Mania.Configuration
             SetDefault(ManiaRulesetSetting.ScrollDirection, ManiaScrollingDirection.Down);
             SetDefault(ManiaRulesetSetting.TimingBasedNoteColouring, false);
             SetDefault(ManiaRulesetSetting.MobileLayout, ManiaMobileLayout.Portrait);
-            SetDefault(ManiaRulesetSetting.TouchOverlay, false)
+            SetDefault(ManiaRulesetSetting.TouchOverlay, false);
             SetDefault(ManiaRulesetSetting.TouchOverlayWidth, 1.0, 0.2, 1.0, 0.01);
             SetDefault(ManiaRulesetSetting.TouchOverlayHeight, 0.5, 0.1, 1.0, 0.01);
             SetDefault(ManiaRulesetSetting.TouchOverlayPositionX, 0.5, 0.0, 1.0, 0.01);
